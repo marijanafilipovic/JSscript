@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" />
+	<meta charset="utf-8">
+	<title>Snimanje koordinata sa plana</title>
+
+    <style>
+      #body {    
+		position: absolute;
+        margin: 0px;
+        padding: 0px;
+	 top:0px;
+	 left:0px;
+      }
+	  #myCanvas{
+	  margin:0px;
+	 top:0px;
+	 left:0px;
+	 position:absolute;
+
+	/* border: 1px solid red; */
+
+
+
+	  }
+	  #photo{
+
+
+	  border: 1px solid green;
+	  /* overflow:scroll; */
+	  width:2000px; height:3280;
+	  }
+    </style>
+  </head>
+  <body id="body">
+  <div id="photo" style="background-image:url('');" >
+   <img id="imageDraw" src="mapaPC.jpg" >
+    <canvas id="myCanvas" width="2000" height="3280" onclick="writeMessage()">
+	 
+	<div id="demo"></div>
+	</canvas>
+   
+	</div>
+   <script>
+window.onload = function() {
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    var img=document.getElementById("imageDraw");
+    ctx.drawImage(img, 0, 0);
+
+	
+	};
+	/*
+function convertImageToCanvas(image) {
+	var canvas = document.createElement("canvas");
+	canvas.width = image.width;
+	canvas.height = image.height;
+	canvas.getContext("2d").drawImage(image, 0, 0);
+
+	return canvas;
+     */
+
+
+      function writeMessage(canvas, message) {
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.font = '18pt Calibri';
+        context.fillStyle = 'black';
+        context.fillText(message, 10, 25);
+      }
+      function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      canvas.addEventListener('dblclick', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+        var message = 'X koordinata: ' + mousePos.x + ', Y koordinata: ' + mousePos.y;
+        alert( message);
+      }, false);
+	  function showCoor(){
+	   document.getElementById("demo").innerHTML = mpusePos.x + "<br>" + mousePos2;}
+	   
+    </script>
+  </body>
+</html>
