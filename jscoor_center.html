@@ -1,6 +1,7 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
-  <head>
+  <head> 
+ 
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" />
 	<meta charset="utf-8">
 	<title>Snimanje koordinata sa plana</title>
@@ -22,46 +23,70 @@
 	/* border: 1px solid red; */
 
 
-
 	  }
 	  #photo{
-
+ 
 
 	  border: 1px solid green;
-	  /* overflow:scroll; */
-	  width:2000px; height:3280;
+	 /*  overflow:scroll; 
+	  width:2000px; height:3280;*/
 	  }
+
+        .eksponat{
+        margin: 0 auto;
+        vertical-align: middle;
+        }
     </style>
+     
   </head>
-  <body id="body">
+  <body id="body" onchange="getImg();">
   <div id="photo" style="background-image:url('');" >
    <img id="imageDraw" src="mapaPC.jpg" >
-    <canvas id="myCanvas" width="2000" height="3280" onclick="writeMessage()">
+    <canvas id="myCanvas" width="2000" height="3280" onclick="writeMessage()"  >
 	 
-	<div id="demo"></div>
+
 	</canvas>
-   
+      <div id="demo"></div>
 	</div>
    <script>
-window.onload = function() {
-    var c=document.getElementById("myCanvas");
-    var ctx=c.getContext("2d");
-    var img=document.getElementById("imageDraw");
-    ctx.drawImage(img, 0, 0);
+       window.onload = function () {
+           var body = document.body;
+           var html = document.documentElement;
+           body.scrollLeft += 903;
+           body.scrollTop += 600;
+           html.scrollLeft += 900;
+           html.scrollTop += 600; 
+        var c=document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        // c.position(912, 327);
+        
+        var img= document.getElementById("imageDraw");
+        ctx.drawImage(img, 0, 0); 
 
-	
-	};
-	/*
-function convertImageToCanvas(image) {
-	var canvas = document.createElement("canvas");
-	canvas.width = image.width;
-	canvas.height = image.height;
-	canvas.getContext("2d").drawImage(image, 0, 0);
+        var imgObj = new Image();
+        img.src = "images/circle.png";
+        img.className = "eksponat";
 
-	return canvas;
-     */
+       /* img.setAttribute("tabIndex", "1");
+           */
+        img.onload = function () {
+            context.drawImage(img, 912, 627);
+           // document.getElementsByClassName("eksponat").focus({ preventScroll: false });
+     
 
+            }  // this.removeChild(canvasClear,childNodes[0]);
+          /*  document.getElementById("myBtn").addEventListener("mouseover", myFunction);
+    
+           var canvasElm = document.getElementByClassName('eksponat');
+        canvasElm.setAttribute('tabindex', '1');
+        canvasElm.focus();
+    */
+        document.getElementById("eksponat").focus();
+          // setInterval(drawScreen, 100);
+       };
 
+     
+ 
       function writeMessage(canvas, message) {
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -78,15 +103,53 @@ function convertImageToCanvas(image) {
       }
       var canvas = document.getElementById('myCanvas');
       var context = canvas.getContext('2d');
-
-      canvas.addEventListener('dblclick', function(evt) {
+   
+  
+       canvas.addEventListener('dblclick', function (evt) {
+      
+        //   ctx.clearRect(xcoordinate_of_img1, ycoordinate_of_img1, xcoordinate_of_img1 + img1.width, ycoord_of_img1 + img1.height);
+         
         var mousePos = getMousePos(canvas, evt);
-        var message = 'X koordinata: ' + mousePos.x + ', Y koordinata: ' + mousePos.y;
-        alert( message);
-      }, false);
+        var message = 'X koordinata: ' + mousePos.x + ', Y koordinata: ' + mousePos.y; 
+        /* window.parent.alert(message);*/
+      //  ctx.clearRect();
+        var img = new Image();
+        img.src = "images/circle.png";
+        img.className = "eksponat";
+        img.onload = function () {
+           
+            context.drawImage(img, mousePos.x, mousePos.y);
+           
+        }
+     
+        parent.paramXY(mousePos.x, mousePos.y);
+       }, false);
+
+       function drawScreen() {
+           context.drawImage(img, 0, 0, 2000, 3000, 0, 0, 2000 * .5, 3000 * .5);
+           windowX += 10;
+           if (windowx > img.width - windowHeight) {
+               windowX = img.width - windowHeight;
+               
+           }
+       }
 	  function showCoor(){
-	   document.getElementById("demo").innerHTML = mpusePos.x + "<br>" + mousePos2;}
-	   
+           document.getElementById("demo").innerHTML = mpusePos.x + "<br>" + mousePos2;
+       }
+
+       function getImg() {
+     
+       }
+       function mousePressed() {
+           removeElements(); // this will remove the div and p, not canvas
+       }
+     
     </script>
-  </body>
+<style>
+
+    .eksponat:focus {
+      border: 1px solid red;
+    
+    }
+    </style>  </body>
 </html>
