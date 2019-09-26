@@ -90,3 +90,48 @@ function convertImageToCanvas(image) {
     </script>
   </body>
 </html>
+
+<!-- ************************BOOTSTRAP COLLAPS NAVBAR**************************************** -->
+                <div class="container shadow"  style="background-color:transparent; z-index: 1000; height:542px;">
+                    <div class="container" style="background-color:transparent; ">
+                        <nav class="navbar navbar-expand-xl" style="float:left;">
+
+                             <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="#main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon" ></span>
+                            </button>
+
+                            <?php
+                            wp_nav_menu(array(
+                                'theme_location'    => 'primary',
+                                'container'       => 'div',
+                                'container_id'    => 'main-nav',
+                                'container_class' => 'collapse navbar-collapse justify-content-end',
+                                'menu_id'         => false,
+                                'menu_class'      => 'navbar-nav',
+                                'depth'           => 3,
+                                'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
+                                'walker'          => new wp_bootstrap_navwalker()
+                            ));
+                            ?>
+
+                        </nav>
+                    </div>
+						<script>
+$(document).ready(function () {
+  $(".navbar-toggler").click(function(event) {
+    $(".navbar-expand-xl").collapse('hide');
+  });
+});
+							/* $(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a:not(".dropdown-toggle")') ) {
+        $(this).collapse('hide');
+    }
+});
+*/
+/*
+$(document).on('click.nav','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') ) {
+        $(this).removeClass('in').addClass('collapse');
+    }
+});*/
+	</script>
